@@ -1,30 +1,4 @@
 
-<div align="center">
-    <h2>
-      Refuse Whenever You Feel Unsafe: Improving Safety in LLMs via Decoupled Refusal Training <br><br>
-     <a href="https://arxiv.org/abs/2407.09121"> <img alt="paper link" src="https://img.shields.io/badge/Paper-arXiv-red"> </a>
-     <a href="https://huggingface.co/Youliang"> <img alt="model link" src="https://img.shields.io/badge/Model-DeRTa-blue"> </a> 
-    </h2>
-</div>
-
-If you have any questions, please feel free to email the first author: [Youliang Yuan](https://github.com/YouliangYuan).
-    
-<div align="center">
-  <img src="paper/cover_derta.png" alt="Logo" width="500">
-</div>
-
-<h3 align="center">LOVE💗 and PEACE🌊</h3>
-
-## Model
-
-:star: **Highlight** :star:
-- Thanks to [Nathaniel Li](https://scholar.google.com/citations?user=2XmBzbcAAAAJ&hl=en)'s kind reminder, we uploaded the model weight on Hugging Face.
-- :hugs: Try the trained models at the HuggingFace model hub:
-  -  [[llama3-70b-lora-derta]](https://huggingface.co/Youliang/llama3-70b-lora-derta) based on [[Meta-Llama-3-70B]](https://huggingface.co/meta-llama/Meta-Llama-3-70B)
-  -  [[llama3-70b-instruct-lora-derta-100step]](https://huggingface.co/Youliang/llama3-70b-instruct-lora-derta-100step) based on [[Meta-Llama-3-70B-Instruct]](https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct)
-  -  [[llama3-8b-derta]](https://huggingface.co/Youliang/llama3-8b-derta) based on [[Meta-Llama-3-8B]](https://huggingface.co/meta-llama/Meta-Llama-3-8B)
-  -  [[llama3-8b-instruct-lora-derta-100step]（Recommend）](https://huggingface.co/Youliang/llama3-8b-instruct-lora-derta-100step) based on [[Meta-Llama-3-8B-Instruct]](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)
-  -  [[llama3-8b-instruct-derta-100step](Not Recommended)](https://huggingface.co/Youliang/llama3-8b-instruct-derta-100step) based on [[Meta-Llama-3-8B-Instruct]](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)
 
 ## 📄 Brief Information for each file and directory
 - `data` ---> includes the training data and evaluation data
@@ -364,57 +338,6 @@ def load_dataset(data_files):
 ```
 
 
-## 💡Motivation & Method
-*Refusal Position Bias*: As shown in the Figure below, in the safety data, the refusal tokens such as 'Sorry', 'I cannot', and 'I apologize', consistently occur within the first few tokens of a safe response. Accordingly, LLMs tuned on these safety data tend to generate refusal tokens at the beginning of a response. 
-
-The refusal positional bias may lead to the following weaknesses: 
-- Lack of Necessary Information for Refuse Decision 
-- Lack of a Mechanism to Refuse in Later Positions.
-
-To address the issues, we have developed a method where LLMs are explicitly trained to refuse compliance at any response juncture by embedding the constructed harmful responses within the training process.
 
 
-<div align="center">
-  <img src="paper/method.png" alt="Logo" width="750">
-</div>
-
-
-- *MLE with Harmful Response Prefix*: incorporate a segment of the harmful response, varying in length, before the safe response.
-
-- *Reinforced Transition Optimization (RTO)*: reinforce the model's capability to identify and transition from potential harm to safety refusal at every position within the harmful response sequence. 
-
-<div align="center">
-  <img src="paper/RTO.png" alt="Logo" width="750">
-</div>
-
-
-## 📃Results
-<div align="center">
-  <img src="paper/main_results.png" alt="Logo" width="750">
-</div>
-
-
-## 🌰 Cases
-<div align="center">
-  <img src="paper/case_jailbreakchat.jpg" alt="Logo" width="750">
-</div>
-
-<div align="center">
-  <img src="paper/case_codeattack.jpg" alt="Logo" width="750">
-</div>
-
-## Citation
-
-If you find our paper&tool interesting and useful, please feel free to give us a star and cite us through:
-```bibtex
-@misc{yuan2024refusefeelunsafeimproving,
-      title={Refuse Whenever You Feel Unsafe: Improving Safety in LLMs via Decoupled Refusal Training}, 
-      author={Youliang Yuan and Wenxiang Jiao and Wenxuan Wang and Jen-tse Huang and Jiahao Xu and Tian Liang and Pinjia He and Zhaopeng Tu},
-      year={2024},
-      eprint={2407.09121},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2407.09121}, 
-}
-```
 
